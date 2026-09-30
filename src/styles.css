@@ -199,6 +199,17 @@
   transform: none;
 }
 
+/* Ljusgrön yta som tonas mjukt in och ut mot vitt (inga hårda kanter). */
+@utility bg-fade-tint {
+  background-image: linear-gradient(
+    to bottom,
+    var(--background),
+    var(--tint) 22%,
+    var(--tint) 78%,
+    var(--background)
+  );
+}
+
 /* Rullande textband */
 @keyframes marquee {
   from {

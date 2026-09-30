@@ -46,7 +46,7 @@ function Rot() {
         </Reveal>
       </section>
 
-      <section className="bg-tint py-20">
+      <section className="bg-fade-tint py-20">
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <p className="eyebrow">ROT-kalkylator</p>

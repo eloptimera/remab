@@ -24,7 +24,7 @@ export function Underline({
   return <span className={`ul-lime ${className}`}>{children}</span>;
 }
 
-/** Rullande textband (dekorativt – innehållet finns även i klartext på sidan). */
+/** Rullande textband i vitt, ligger längst ner i hero (dekorativt – tjänsterna finns i klartext på sidan). */
 export function Marquee({ items }: { items: readonly string[] }) {
   const rad = (
     <ul className="flex shrink-0 items-center gap-8 pr-8">
@@ -39,7 +39,7 @@ export function Marquee({ items }: { items: readonly string[] }) {
   return (
     <div
       aria-hidden="true"
-      className="overflow-hidden bg-lime py-5 font-display text-2xl text-foreground sm:py-6 sm:text-4xl"
+      className="absolute inset-x-0 bottom-0 overflow-hidden bg-linear-to-t from-black/55 to-transparent pt-10 pb-6 font-display text-3xl text-white sm:pb-8 sm:text-5xl"
     >
       <div className="marquee-track">
         {rad}

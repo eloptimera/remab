@@ -59,7 +59,7 @@ function Start() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate -mt-16 flex min-h-svh items-center overflow-hidden pt-28 pb-20">
+      <section className="relative isolate -mt-16 flex min-h-svh items-center overflow-hidden pt-28 pb-40 sm:pb-44">
         <img
           src={hero}
           alt=""
@@ -99,9 +99,8 @@ function Start() {
             </a>
           </div>
         </div>
+        <Marquee items={BANDTEXT} />
       </section>
-
-      <Marquee items={BANDTEXT} />
 
       {/* Om företaget */}
       <section className="container-page grid gap-10 py-20 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
@@ -133,21 +132,15 @@ function Start() {
               <dd className="mt-3 font-display text-5xl">{FORETAG.aktivtSedan}</dd>
             </div>
             <div className="rounded-3xl bg-lime p-6">
-              <dt className="text-xs font-bold tracking-[0.14em] uppercase">Anställda</dt>
-              <dd className="mt-3 font-display text-5xl">{FORETAG.anstallda}</dd>
-            </div>
-            <div className="col-span-2 rounded-3xl border-2 border-foreground p-6">
-              <dt className="text-xs font-bold tracking-[0.14em] text-muted-foreground uppercase">
-                Arbetsområde
-              </dt>
-              <dd className="mt-3 font-display text-2xl leading-tight">{FORETAG.omrade}</dd>
+              <dt className="text-xs font-bold tracking-[0.14em] uppercase">Arbetsområde</dt>
+              <dd className="mt-3 font-display text-3xl leading-tight">{FORETAG.omrade}</dd>
             </div>
           </dl>
         </Reveal>
       </section>
 
       {/* Tjänster */}
-      <section className="bg-tint py-20 sm:py-28">
+      <section className="bg-fade-tint py-20 sm:py-28">
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Tjänster</p>
