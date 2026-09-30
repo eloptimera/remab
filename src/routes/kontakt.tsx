@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Heading } from "@/components/Paint";
+import { Heading, Underline } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { FORETAG } from "@/lib/foretag";
 import { skickaKontakt } from "@/lib/formular";
@@ -8,16 +8,16 @@ import { skickaKontakt } from "@/lib/formular";
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
     meta: [
-      { title: "Kontakt – RT Anderssons Måleri AB i Sundsvall" },
+      { title: "Kontakt – ReMAB AB i Torslanda" },
       {
         name: "description",
         content:
-          "Ring, mejla eller skicka ett meddelande till RT Anderssons Måleri AB i Sundsvall. Öppettider, adress och karta.",
+          "Ring, mejla eller skicka ett meddelande till ReMAB AB i Torslanda. Telefon, e-post, adress och karta.",
       },
-      { property: "og:title", content: "Kontakt – RT Anderssons Måleri AB" },
+      { property: "og:title", content: "Kontakt – ReMAB AB" },
       {
         property: "og:description",
-        content: "Telefon, e-post, adress och öppettider för måleriet i Sundsvall.",
+        content: "Telefon, e-post och adress till ReMAB AB i Torslanda.",
       },
       { property: "og:url", content: "/kontakt" },
     ],
@@ -61,7 +61,7 @@ function Kontakt() {
 
             className="mt-6 max-w-2xl text-4xl leading-[1.12] sm:text-5xl"
           >
-            Hör av dig, så svarar vi så fort vi kan
+            Hör av dig – vi <Underline>återkommer</Underline>
           </Heading>
         </Reveal>
       </section>
@@ -81,17 +81,6 @@ function Kontakt() {
               </dd>
             </div>
             <div>
-              <dt className="eyebrow">Mobil</dt>
-              <dd className="mt-2">
-                <a
-                  href={`tel:${FORETAG.mobilLank}`}
-                  className="font-display text-2xl hover:opacity-70"
-                >
-                  {FORETAG.mobil}
-                </a>
-              </dd>
-            </div>
-            <div>
               <dt className="eyebrow">E-post</dt>
               <dd className="mt-2">
                 <a href={`mailto:${FORETAG.epost}`} className="hover:opacity-70">
@@ -104,14 +93,8 @@ function Kontakt() {
               <dd className="mt-2 text-muted-foreground">{FORETAG.adress}</dd>
             </div>
             <div>
-              <dt className="eyebrow">Öppettider</dt>
-              <dd className="mt-2 space-y-1 text-muted-foreground">
-                {FORETAG.oppettider.map((o) => (
-                  <p key={o.dag}>
-                    {o.dag}: {o.tid}
-                  </p>
-                ))}
-              </dd>
+              <dt className="eyebrow">Arbetsområde</dt>
+              <dd className="mt-2 text-muted-foreground">{FORETAG.omrade}</dd>
             </div>
             <div>
               <dt className="eyebrow">Organisationsnummer</dt>
@@ -122,16 +105,14 @@ function Kontakt() {
 
         <Reveal delay={120}>
           {klart ? (
-            <div className="rounded-sm border border-line bg-card p-8">
+            <div className="rounded-3xl border border-line bg-card p-8">
               <h2 className="text-2xl">Tack för ditt meddelande</h2>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Vi återkommer så snart vi kan, oftast samma arbetsdag.
-              </p>
+              <p className="mt-4 text-sm text-muted-foreground">Vi återkommer så snart vi kan.</p>
             </div>
           ) : (
             <form
               onSubmit={onSubmit}
-              className="grid gap-5 rounded-sm border border-line bg-card p-8"
+              className="grid gap-5 rounded-3xl border border-line bg-card p-8"
             >
               <h2 className="text-2xl">Skicka ett meddelande</h2>
               <div>
@@ -178,10 +159,10 @@ function Kontakt() {
       <section className="container-page pb-20">
         <Reveal>
           <iframe
-            title="Karta över vårt verksamhetsområde i Sundsvall"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=17.20%2C62.35%2C17.42%2C62.44&layer=mapnik"
+            title="Karta över Torslanda och Hisingen"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=11.62%2C57.66%2C11.92%2C57.79&layer=mapnik"
             loading="lazy"
-            className="h-[380px] w-full rounded-sm border border-line"
+            className="h-[380px] w-full rounded-3xl border border-line"
           />
         </Reveal>
       </section>

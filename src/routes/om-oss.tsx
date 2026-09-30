@@ -1,22 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PaintHeading, PaintSection } from "@/components/Paint";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Heading, Underline } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { FORETAG } from "@/lib/foretag";
-import { ImagePlus } from "lucide-react";
+import logo from "@/assets/remab-logo.png";
 
 export const Route = createFileRoute("/om-oss")({
   head: () => ({
     meta: [
-      { title: "Om oss – RT Anderssons Måleri AB i Sundsvall" },
+      { title: "Om oss – ReMAB AB, måleri i Torslanda" },
       {
         name: "description",
         content:
-          "Historien bakom RT Anderssons Måleri AB i Sundsvall: hantverket och värderingarna som ligger bakom varje målat rum.",
+          "ReMAB AB är ett målerifirma i Torslanda med erfarna målare. Aktiva sedan 2006 i Torslanda, på Hisingen och i Göteborg.",
       },
-      { property: "og:title", content: "Om oss – RT Anderssons Måleri AB" },
+      { property: "og:title", content: "Om oss – ReMAB AB" },
       {
         property: "og:description",
-        content: "Måleriföretaget i Sundsvall som lägger tiden på underarbetet.",
+        content: "Erfarna målare i Torslanda med precision och personligt engagemang.",
       },
       { property: "og:url", content: "/om-oss" },
     ],
@@ -27,22 +27,31 @@ export const Route = createFileRoute("/om-oss")({
 
 const VARDERINGAR = [
   {
-    titel: "Underarbetet först",
-    text: "Ett måleri bedöms om tio år, inte om tio dagar. Därför lägger vi merparten av tiden på det som sedan göms under färgen.",
+    titel: "Dina visioner i fokus",
+    text: "Vi lyssnar först. Din bild av resultatet är utgångspunkten för hela arbetet.",
+    stil: "bg-lime text-foreground",
   },
   {
-    titel: "Fast pris, inga tillägg",
-    text: "Offerten vi lämnar är den du betalar. Dyker något oväntat upp hör vi av oss innan vi rör det.",
+    titel: "Varje detalj är viktig",
+    text: "Precision i både underarbete och slutresultat, från första spackelstrykningen.",
+    stil: "bg-foreground text-background",
   },
   {
-    titel: "Rena arbetsplatser",
-    text: "Vi täcker, dammsuger och städar varje dag. Du ska kunna bo kvar medan vi arbetar.",
+    titel: "Varje kund värd det bästa",
+    text: "Ett personligt engagemang i varje projekt, stort som smått.",
+    stil: "border-2 border-foreground",
   },
-];
+] as const;
 
-// Lägg in sökvägen till en bild på grundaren här, t.ex. importera en fil från
-// "@/assets/" och sätt GRUNDARE_BILD = grundarBild. Tills dess visas en tom ram.
-const GRUNDARE_BILD: string | null = null;
+const FAKTA = [
+  { rubrik: "Företag", varde: `${FORETAG.namn} (${FORETAG.undertitel})` },
+  { rubrik: "Organisationsnummer", varde: FORETAG.orgnr },
+  { rubrik: "Aktiva sedan", varde: String(FORETAG.aktivtSedan) },
+  { rubrik: "VD", varde: FORETAG.vd },
+  { rubrik: "Anställda", varde: `${FORETAG.anstallda} (2025)` },
+  { rubrik: "Skatt", varde: "Registrerad för F-skatt, moms och arbetsgivaravgift" },
+  { rubrik: "Arbetsområde", varde: FORETAG.omrade },
+] as const;
 
 function OmOss() {
   return (
@@ -50,76 +59,63 @@ function OmOss() {
       <section className="container-page pt-16 pb-16 sm:pt-24">
         <Reveal>
           <p className="eyebrow">Om oss</p>
-          <PaintHeading
-            as="h1"
-            seed={31}
-            className="mt-6 max-w-2xl text-4xl leading-[1.12] sm:text-5xl"
-          >
-            Ett måleri byggt på tålamod, inte på tempo
-          </PaintHeading>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-            {FORETAG.namn} är ett familjedrivet måleri i {FORETAG.ort}. Vi är tillräckligt små för
-            att du alltid pratar med samma person, och tillräckligt erfarna för att klara både en
-            enskild hall och ett helt trapphus.
+          <Heading as="h1" className="mt-6 max-w-3xl text-5xl sm:text-6xl">
+            Erfarna målare som sätter dina <Underline>visioner</Underline> i fokus
+          </Heading>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Vi är ett passionerat team av erfarna målare. Sedan {FORETAG.aktivtSedan} har{" "}
+            {FORETAG.namn} levererat högkvalitativa måleriarbeten med stor precision och ett
+            personligt engagemang i Torslanda och Göteborgsområdet.
           </p>
         </Reveal>
       </section>
 
-      <section className="container-page grid gap-12 pb-20 lg:grid-cols-[0.85fr_1fr] lg:gap-20">
-        <Reveal>
-          {GRUNDARE_BILD ? (
-            <img
-              src={GRUNDARE_BILD}
-              alt="Grundaren av RT Anderssons Måleri AB"
-              loading="lazy"
-              className="aspect-4/5 w-full rounded-sm object-cover"
-            />
-          ) : (
-            <div className="flex aspect-4/5 w-full flex-col items-center justify-center gap-3 rounded-sm border border-dashed border-foreground/30 bg-sand text-muted-foreground">
-              <ImagePlus size={32} strokeWidth={1.3} aria-hidden="true" />
-              <span className="text-sm">Lägg in bild på grundaren</span>
-            </div>
-          )}
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="eyebrow">Grundaren</p>
-          <h2 className="mt-4 text-3xl">Från lärling till eget måleri</h2>
-          <div className="mt-6 space-y-5 text-sm leading-relaxed text-muted-foreground">
-            <p>
-              Det började som lärling hos en äldre målare utanför {FORETAG.ort}, med en spackelspade
-              i handen och order om att aldrig gå vidare till färgen förrän ytan var helt slät. Den
-              regeln gäller fortfarande.
-            </p>
-            <p>
-              Efter många år i andras företag startade vi eget för att kunna arbeta på vårt eget
-              sätt: färre jobb samtidigt, mer tid på varje, och samma målare på plats från första
-              dagen till besiktningen.
-            </p>
-            <p>
-              Idag målar vi villor, lägenheter, trapphus och fasader åt privatpersoner,
-              bostadsrättsföreningar och mindre företag i hela Sundsvallsområdet.
-            </p>
-          </div>
-        </Reveal>
+      <section className="container-page grid gap-6 pb-20 md:grid-cols-3">
+        {VARDERINGAR.map((v, i) => (
+          <Reveal key={v.titel} delay={i * 100}>
+            <article className={`h-full rounded-3xl p-8 ${v.stil}`}>
+              <h2 className="text-2xl sm:text-3xl">{v.titel}</h2>
+              <p className="mt-4 leading-relaxed opacity-85">{v.text}</p>
+            </article>
+          </Reveal>
+        ))}
       </section>
 
-      <PaintSection tone="tint" seed={33} className="py-20">
-        <div className="container-page">
+      <section className="bg-tint py-20">
+        <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-20">
           <Reveal>
-            <p className="eyebrow">Våra värderingar</p>
+            <div className="rounded-3xl bg-white p-8">
+              <img
+                src={logo}
+                alt={`${FORETAG.namn} – ${FORETAG.undertitel}`}
+                width={766}
+                height={261}
+                loading="lazy"
+                className="h-auto w-full"
+              />
+            </div>
           </Reveal>
-          <div className="mt-10 grid gap-10 md:grid-cols-3">
-            {VARDERINGAR.map((v, i) => (
-              <Reveal key={v.titel} delay={i * 100}>
-                <article className="border-t border-foreground/20 pt-6">
-                  <h3 className="text-xl">{v.titel}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={120}>
+            <p className="eyebrow">Fakta om företaget</p>
+            <dl className="mt-6 divide-y-2 divide-foreground/10">
+              {FAKTA.map((f) => (
+                <div key={f.rubrik} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt className="text-sm font-bold">{f.rubrik}</dt>
+                  <dd className="text-muted-foreground">{f.varde}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
-      </PaintSection>
+      </section>
+
+      <section className="container-page py-20 sm:py-28">
+        <Reveal className="flex justify-center">
+          <Link to="/offert" className="btn-base btn-lime px-10 py-5 text-lg">
+            Begär en gratis offert
+          </Link>
+        </Reveal>
+      </section>
     </>
   );
 }

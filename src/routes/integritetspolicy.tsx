@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heading } from "@/components/Paint";
+import { Heading } from "@/components/Heading";
 import { FORETAG } from "@/lib/foretag";
 
 export const Route = createFileRoute("/integritetspolicy")({
   head: () => ({
     meta: [
-      { title: "Integritetspolicy – RT Anderssons Måleri AB" },
+      { title: "Integritetspolicy – ReMAB AB" },
       {
         name: "description",
         content:
-          "Så behandlar RT Anderssons Måleri AB dina personuppgifter när du kontaktar oss eller begär offert.",
+          "Så behandlar ReMAB AB dina personuppgifter när du kontaktar oss eller begär offert.",
       },
-      { property: "og:title", content: "Integritetspolicy – RT Anderssons Måleri AB" },
+      { property: "og:title", content: "Integritetspolicy – ReMAB AB" },
       { property: "og:url", content: "/integritetspolicy" },
     ],
     links: [{ rel: "canonical", href: "/integritetspolicy" }],
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/integritetspolicy")({
 function Sektion({ titel, children }: { titel: string; children: React.ReactNode }) {
   return (
     <section className="mt-12">
-      <h2 className="font-display text-2xl text-primary">{titel}</h2>
+      <h2 className="font-display text-2xl">{titel}</h2>
       <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
         {children}
       </div>
@@ -34,7 +34,7 @@ function Integritetspolicy() {
   return (
     <article className="container-page max-w-3xl pt-16 pb-8 sm:pt-24">
       <p className="eyebrow">Integritetspolicy</p>
-      <Heading as="h1" className="mt-6 text-4xl leading-[1.12] sm:text-5xl">
+      <Heading as="h1" className="mt-6 text-4xl sm:text-5xl">
         Så hanterar vi dina personuppgifter
       </Heading>
       <p className="mt-6 text-base leading-relaxed text-muted-foreground">
@@ -74,10 +74,10 @@ function Integritetspolicy() {
 
       <Sektion titel="Varför vi behandlar uppgifterna">
         <p>
-          Vi använder uppgifterna för att svara på din fråga, boka hembesök och ta fram en offert.
-          Rättslig grund är att det behövs för att vidta åtgärder på din begäran innan ett avtal
-          ingås, och därefter för att fullgöra avtalet. Om du blir kund sparar vi även underlag som
-          vi är skyldiga att bevara enligt bokföringslagen.
+          Vi använder uppgifterna för att svara på din fråga och ta fram en offert. Rättslig grund
+          är att det behövs för att vidta åtgärder på din begäran innan ett avtal ingås, och
+          därefter för att fullgöra avtalet. Om du blir kund sparar vi även underlag som vi är
+          skyldiga att bevara enligt bokföringslagen.
         </p>
         <p>Vi säljer inte dina uppgifter och skickar inte nyhetsbrev utan att du bett om det.</p>
       </Sektion>

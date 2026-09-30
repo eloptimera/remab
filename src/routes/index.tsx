@@ -1,29 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BeforeAfterSlider, type ForeEfterPar } from "@/components/BeforeAfterSlider";
-import { Heading, PaintHeading, PaintSection } from "@/components/Paint";
+import { Heading, Marquee, Underline } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { FORETAG } from "@/lib/foretag";
-import { ArrowUpRight, DoorOpen, Layers, Scroll, type LucideIcon } from "lucide-react";
-
-import sundsvall from "@/assets/sundsvall.jpg";
-import vardagsrumFore from "@/assets/vardagsrum-fore.jpg";
-import vardagsrumEfter from "@/assets/vardagsrum-efter.jpg";
-import fasadEfter from "@/assets/fasad-efter.jpg";
+import { ArrowUpRight } from "lucide-react";
+import hero from "@/assets/hero-goteborg.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Målare i Sundsvall – RT Anderssons Måleri AB" },
+      { title: "Målare i Torslanda & Göteborg – ReMAB AB" },
       {
         name: "description",
         content:
-          "Målare i Sundsvall sedan 1991. Invändig målning, fasadmålning och tapetsering i Sundsvall. Kostnadsfri offert, fast pris och 3 års garanti.",
+          "Professionellt måleri i Torslanda, på Hisingen och i Göteborg sedan 2006. Invändigt och utvändigt måleri, spackling, slipning och tapetsering. Begär en gratis offert.",
       },
-      { property: "og:title", content: "Målare i Sundsvall – RT Anderssons Måleri AB" },
+      { property: "og:title", content: "Målare i Torslanda & Göteborg – ReMAB AB" },
       {
         property: "og:description",
-        content:
-          "Hantverksmässigt måleri i Sundsvall med omnejd. Kostnadsfritt hembesök och fast offert.",
+        content: "Erfarna målare med precision och personligt engagemang. Begär en gratis offert.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -32,276 +26,189 @@ export const Route = createFileRoute("/")({
   component: Start,
 });
 
-const PAR: ForeEfterPar[] = [
-  {
-    id: "vardagsrum",
-    titel: "Vardagsrum",
-    plats: "Platshållarbild – byt ut",
-    fore: vardagsrumFore,
-    efter: vardagsrumEfter,
-    altFore: "Vardagsrumsvägg före målning, med sprickor och flagnande färg",
-    altEfter: "Samma vardagsrumsvägg efter målning i varm off-white",
-  },
-];
-
-type Tjanst = {
-  nr: string;
-  titel: string;
-  text: string;
-  bild?: string;
-  bildAlt?: string;
-  ikon?: LucideIcon;
-};
-
-const TJANSTER: Tjanst[] = [
+const TJANSTER = [
   {
     nr: "01",
-    titel: "Invändig målning",
-    text: "Väggar, tak och lister med noggrant underarbete och dammfria ytor.",
-    bild: vardagsrumEfter,
-    bildAlt: "Nymålat vardagsrum i ljus kulör",
+    titel: "Invändigt måleri",
+    text: "Målning av väggar, tak, kök och snickerier.",
+    stil: "bg-lime text-foreground",
   },
   {
     nr: "02",
-    titel: "Fasadmålning",
-    text: "Tvätt, skrapning, grundning och täckmålning anpassad efter husets ålder.",
-    bild: fasadEfter,
-    bildAlt: "Nymålad trähusfasad i falurött",
+    titel: "Spackling & slipning",
+    text: "Noggrant underarbete för jämna och hållbara resultat.",
+    stil: "bg-foreground text-background",
   },
   {
     nr: "03",
     titel: "Tapetsering",
-    text: "Från enkla rum till mönsterpassning i äldre hus med sneda väggar.",
-    ikon: Scroll,
+    text: "Professionell uppsättning av mönstrade och enfärgade tapeter.",
+    stil: "bg-foreground text-background",
   },
   {
     nr: "04",
-    titel: "Spackling & underarbete",
-    text: "Det som avgör slutresultatet. Vi lägger tiden där den syns mest.",
-    ikon: Layers,
+    titel: "Utvändigt måleri",
+    text: "Fasadmålning av villor och fastigheter anpassat efter väder och material.",
+    stil: "bg-lime text-foreground",
   },
-  {
-    nr: "05",
-    titel: "Snickerimålning",
-    text: "Dörrar, foder, fönster och köksluckor med slitstarka ytskikt.",
-    ikon: DoorOpen,
-  },
-];
+] as const;
 
-const OMDOMEN = [
-  {
-    text: "De tog hand om hela trapphuset utan att en enda boende klagade. Noggrant, tyst och prickfritt.",
-    namn: "Platshållare – kund",
-    roll: "Brf i Sundsvall",
-  },
-  {
-    text: "Fast pris som höll, och de var klara en dag före utsatt tid. Underarbetet syns i slutresultatet.",
-    namn: "Platshållare – kund",
-    roll: "Villaägare, Timrå",
-  },
-  {
-    text: "Vi bad om hjälp med kulörval och fick ärliga råd i stället för säljsnack. Rekommenderas.",
-    namn: "Platshållare – kund",
-    roll: "Lägenhet, Stenstan",
-  },
-];
+const BANDTEXT = TJANSTER.map((t) => t.titel);
 
 function Start() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate -mt-16 flex min-h-svh items-center overflow-hidden pt-24 pb-16">
+      <section className="relative isolate -mt-16 flex min-h-svh items-center overflow-hidden pt-28 pb-20">
         <img
-          src={sundsvall}
+          src={hero}
           alt=""
-          width={2400}
-          height={1348}
+          width={1000}
+          height={513}
           fetchPriority="high"
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
         <div
-          className="absolute inset-0 -z-10 bg-linear-to-b from-black/55 via-black/40 to-black/60"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-linear-to-r from-black/45 via-black/15 to-transparent"
+          className="absolute inset-0 -z-10 bg-linear-to-b from-black/60 via-black/45 to-black/75"
           aria-hidden="true"
         />
         <div className="container-page text-white">
-          <h1 className="text-[min(4rem,calc((100vw_-_3.5rem)/19.2))] leading-[1.05] font-normal tracking-[0.01em] whitespace-nowrap uppercase">
-            Målare i {FORETAG.ort} sedan 1991
+          <div className="flex flex-wrap gap-3" aria-hidden="true">
+            <span className="-rotate-3 rounded-full bg-lime px-5 py-2 text-sm font-bold text-foreground">
+              Sedan {FORETAG.aktivtSedan}
+            </span>
+            <span className="rotate-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-foreground">
+              Torslanda · Hisingen · Göteborg
+            </span>
+          </div>
+          <h1 className="mt-8 max-w-4xl text-[clamp(2.75rem,8vw,6.5rem)] leading-[1]">
+            Professionellt <Underline>måleri</Underline> i {FORETAG.ort} &amp; Göteborg
           </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-white/85">
-            Vi målar hem, trapphus och fasader i {FORETAG.ort} med omnejd. Lugnt tempo, noggrant
-            underarbete och ett fast pris du kan lita på.
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/90">
+            Vi är ett passionerat team av erfarna målare som sätter dina unika visioner i fokus.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/offert"
-              className="btn-base bg-primary-foreground text-primary hover:opacity-90"
-            >
-              Begär kostnadsfri offert
+            <Link to="/offert" className="btn-base btn-lime">
+              Begär en gratis offert
             </Link>
-            <Link
-              to="/priser"
-              className="btn-base border border-white/60 text-white hover:bg-white/10"
+            <a
+              href={`tel:${FORETAG.telefonLank}`}
+              className="btn-base border-2 border-white text-white hover:border-lime hover:bg-lime hover:text-foreground"
             >
-              Se våra priser
-            </Link>
+              Ring {FORETAG.telefon}
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Före/efter */}
-      <PaintSection tone="tint" seed={3} className="py-16 sm:py-20">
-        <div className="container-page">
-          <Reveal>
-            <div className="max-w-2xl">
-              <p className="eyebrow">Före och efter</p>
-              <PaintHeading seed={5} className="mt-3 text-3xl sm:text-4xl">
-                Dra i handtaget och se skillnaden
-              </PaintHeading>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                Samma yta, före och efter vårt arbete. Dra åt sidorna – eller använd piltangenterna
-                när handtaget är markerat.
-              </p>
+      <Marquee items={BANDTEXT} />
+
+      {/* Om företaget */}
+      <section className="container-page grid gap-10 py-20 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+        <Reveal>
+          <p className="eyebrow">ReMAB AB</p>
+          <Heading className="mt-4 max-w-2xl text-4xl sm:text-5xl">
+            Varje projekt är en <Underline>prioritet</Underline>
+          </Heading>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Sedan {FORETAG.aktivtSedan} har ReMAB AB levererat högkvalitativa måleriarbeten med stor
+            precision och ett personligt engagemang i Torslanda och Göteborgsområdet. För oss är
+            varje projekt en prioritet, varje detalj viktig och varje kund värd det allra bästa.
+          </p>
+          <Link
+            to="/om-oss"
+            className="mt-8 inline-flex items-center gap-2 font-bold underline decoration-lime decoration-[0.18em] underline-offset-[0.4em] hover:decoration-foreground"
+          >
+            Läs mer om oss
+            <ArrowUpRight size={18} strokeWidth={2.2} aria-hidden="true" />
+          </Link>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <dl className="grid grid-cols-2 gap-4">
+            <div className="rounded-3xl bg-foreground p-6 text-background">
+              <dt className="text-xs font-bold tracking-[0.14em] text-lime uppercase">
+                Aktiva sedan
+              </dt>
+              <dd className="mt-3 font-display text-5xl">{FORETAG.aktivtSedan}</dd>
             </div>
-          </Reveal>
-          <Reveal delay={120} className="mx-auto mt-8 w-[90%]">
-            <BeforeAfterSlider par={PAR} />
-          </Reveal>
-        </div>
-      </PaintSection>
+            <div className="rounded-3xl bg-lime p-6">
+              <dt className="text-xs font-bold tracking-[0.14em] uppercase">Anställda</dt>
+              <dd className="mt-3 font-display text-5xl">{FORETAG.anstallda}</dd>
+            </div>
+            <div className="col-span-2 rounded-3xl border-2 border-foreground p-6">
+              <dt className="text-xs font-bold tracking-[0.14em] text-muted-foreground uppercase">
+                Arbetsområde
+              </dt>
+              <dd className="mt-3 font-display text-2xl leading-tight">{FORETAG.omrade}</dd>
+            </div>
+          </dl>
+        </Reveal>
+      </section>
 
       {/* Tjänster */}
-      <PaintSection tone="beige" seed={7} className="py-20 sm:py-28">
+      <section className="bg-tint py-20 sm:py-28">
         <div className="container-page">
           <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="eyebrow">Tjänster</p>
-                <Heading className="mt-4 max-w-lg text-3xl sm:text-4xl">
-                  Allt inom måleri – utfört av samma lag hela vägen
-                </Heading>
-              </div>
-              <div className="max-w-sm md:text-right">
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Från första skrapan till sista penseldraget. Ett lag, en kontaktperson och ett
-                  fast pris.
-                </p>
-                <Link
-                  to="/offert"
-                  className="mt-4 inline-flex items-center gap-2 border-b border-foreground/40 pb-0.5 text-sm font-medium transition-colors duration-300 hover:border-foreground"
+            <p className="eyebrow">Tjänster</p>
+            <Heading className="mt-4 max-w-2xl text-4xl sm:text-5xl">
+              Målning för hus, lägenheter och <Underline>fastigheter</Underline>
+            </Heading>
+          </Reveal>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {TJANSTER.map((t, i) => (
+              <Reveal key={t.titel} delay={i * 80}>
+                <article
+                  className={`flex h-full min-h-[15rem] flex-col justify-between rounded-3xl p-8 sm:p-10 ${t.stil}`}
                 >
-                  Begär offert
-                  <ArrowUpRight size={16} strokeWidth={1.6} aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-4 lg:grid-cols-6">
-            {TJANSTER.map((t, i) => {
-              const Ikon = t.ikon;
-              const stor = i === 0;
-              const span = t.bild ? (stor ? "lg:col-span-4" : "lg:col-span-2") : "lg:col-span-2";
-
-              if (t.bild) {
-                return (
-                  <Reveal key={t.titel} delay={i * 80} className={span}>
-                    <article className="group relative isolate flex h-full min-h-[22rem] flex-col justify-end overflow-hidden rounded-sm text-white lg:min-h-[27rem]">
-                      <img
-                        src={t.bild}
-                        alt={t.bildAlt ?? ""}
-                        loading="lazy"
-                        className="absolute inset-0 -z-20 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
-                      />
-                      <div
-                        className="absolute inset-0 -z-10 bg-linear-to-t from-black/75 via-black/20 to-black/0"
-                        aria-hidden="true"
-                      />
-                      <span className="absolute top-6 left-6 rounded-full border border-white/50 bg-black/30 px-3 py-1 text-[0.7rem] tracking-[0.18em] backdrop-blur-sm">
-                        {t.nr}
-                      </span>
-                      <div className="p-6 sm:p-8">
-                        <h3 className="text-2xl sm:text-3xl">{t.titel}</h3>
-                        <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/85">
-                          {t.text}
-                        </p>
-                      </div>
-                    </article>
-                  </Reveal>
-                );
-              }
-
-              return (
-                <Reveal key={t.titel} delay={i * 80} className={span}>
-                  <article className="group flex h-full min-h-[16rem] flex-col justify-between rounded-sm border border-line bg-card p-6 transition-colors duration-500 hover:border-primary hover:bg-primary hover:text-primary-foreground sm:p-8">
-                    <div className="flex items-start justify-between">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors duration-500 group-hover:bg-primary-foreground/15 group-hover:text-primary-foreground">
-                        {Ikon && <Ikon size={22} strokeWidth={1.5} aria-hidden="true" />}
-                      </span>
-                      <span className="text-[0.7rem] tracking-[0.18em] text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/70">
-                        {t.nr}
-                      </span>
-                    </div>
-                    <div className="mt-10">
-                      <h3 className="text-xl">{t.titel}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/80">
-                        {t.text}
-                      </p>
-                    </div>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </PaintSection>
-
-      {/* Omdömen */}
-      <PaintSection tone="tint" seed={19} className="py-20 sm:py-28">
-        <div className="container-page">
-          <Reveal>
-            <Heading className="text-3xl sm:text-4xl">Kundomdömen</Heading>
-          </Reveal>
-          <div className="mt-10 grid gap-10 md:grid-cols-3">
-            {OMDOMEN.map((o, i) => (
-              <Reveal key={o.text} delay={i * 100}>
-                <figure className="h-full">
-                  <blockquote className="font-display text-lg leading-relaxed">
-                    ”{o.text}”
-                  </blockquote>
-                  <figcaption className="mt-5 text-sm text-muted-foreground">
-                    {o.namn} · {o.roll}
-                  </figcaption>
-                </figure>
+                  <span className="text-sm font-bold tracking-[0.14em]">{t.nr}</span>
+                  <div className="mt-12">
+                    <h3 className="text-3xl sm:text-4xl">{t.titel}</h3>
+                    <p className="mt-4 max-w-sm leading-relaxed opacity-85">{t.text}</p>
+                  </div>
+                </article>
               </Reveal>
             ))}
           </div>
         </div>
-      </PaintSection>
+      </section>
+
+      {/* ROT */}
+      <section className="container-page py-20 sm:py-28">
+        <Reveal>
+          <div className="grid gap-8 rounded-3xl border-2 border-foreground p-8 sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="eyebrow">Privatkunder</p>
+              <Heading className="mt-4 max-w-xl text-3xl sm:text-4xl">
+                ROT-avdrag direkt på <Underline>fakturan</Underline>
+              </Heading>
+              <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
+                ReMAB AB har F-skatt, vilket krävs för att du ska kunna använda ROT-avdraget direkt
+                på fakturan för måleriarbeten i ditt hem.
+              </p>
+            </div>
+            <Link to="/rot" className="btn-base btn-primary">
+              Räkna på ditt ROT-avdrag
+            </Link>
+          </div>
+        </Reveal>
+      </section>
 
       {/* Avslutande CTA */}
-      <section className="container-page">
+      <section className="container-page pb-4">
         <Reveal>
-          <div className="rounded-sm bg-primary px-8 py-16 text-primary-foreground sm:px-16 sm:py-20">
-            <h2 className="max-w-lg text-3xl sm:text-4xl">
-              Berätta om ditt projekt så kommer vi ut och tittar
+          <div className="rounded-3xl bg-foreground px-8 py-16 text-background sm:px-16 sm:py-20">
+            <h2 className="max-w-2xl text-4xl sm:text-5xl">
+              Berätta om ditt projekt – vi ger dig en <Underline>gratis offert</Underline>
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed opacity-80">
-              Hembesöket och offerten är kostnadsfria. Du binder dig inte till något.
-            </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link
-                to="/offert"
-                className="btn-base bg-background text-foreground hover:opacity-90"
-              >
-                Begär kostnadsfri offert
+              <Link to="/offert" className="btn-base btn-lime">
+                Begär en gratis offert
               </Link>
               <a
                 href={`tel:${FORETAG.telefonLank}`}
-                className="btn-base border border-primary-foreground/35 text-primary-foreground hover:bg-primary-foreground/10"
+                className="btn-base border-2 border-background/60 text-background hover:border-lime hover:bg-lime hover:text-foreground"
               >
                 Ring {FORETAG.telefon}
               </a>
