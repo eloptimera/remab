@@ -82,7 +82,8 @@ function Start() {
             </span>
           </div>
           <h1 className="mt-8 max-w-4xl text-[clamp(2.75rem,8vw,6.5rem)] leading-[1]">
-            Professionellt <Underline>måleri</Underline> i {FORETAG.ort} &amp; Göteborg
+            Professionellt <Underline>måleri</Underline> i{"\u00a0"}
+            {FORETAG.ort} &amp;{"\u00a0"}Göteborg
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/90">
             Vi är ett passionerat team av erfarna målare som sätter dina unika visioner i fokus.
@@ -133,7 +134,9 @@ function Start() {
             </div>
             <div className="rounded-3xl bg-lime p-6">
               <dt className="text-xs font-bold tracking-[0.14em] uppercase">Arbetsområde</dt>
-              <dd className="mt-3 font-display text-3xl leading-tight">{FORETAG.omrade}</dd>
+              <dd className="mt-3 font-display text-2xl leading-tight sm:text-3xl">
+                {FORETAG.omrade}
+              </dd>
             </div>
           </dl>
         </Reveal>

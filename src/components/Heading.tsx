@@ -1,3 +1,4 @@
+import { Asterisk } from "lucide-react";
 import type { ElementType, ReactNode } from "react";
 
 /** Sidrubrik i sajtens display-typsnitt. */
@@ -16,12 +17,17 @@ export function Heading({
 /** Ord som understryks i ljusgrönt. */
 export function Underline({
   className = "",
+  nowrap = false,
   children,
 }: {
   className?: string;
+  /** Håll ihop texten på en rad (t.ex. ord med bindestreck). */
+  nowrap?: boolean;
   children: ReactNode;
 }) {
-  return <span className={`ul-lime ${className}`}>{children}</span>;
+  return (
+    <span className={`ul-lime ${nowrap ? "whitespace-nowrap" : ""} ${className}`}>{children}</span>
+  );
 }
 
 /** Rullande textband i vitt, ligger längst ner i hero (dekorativt – tjänsterna finns i klartext på sidan). */
@@ -31,7 +37,7 @@ export function Marquee({ items }: { items: readonly string[] }) {
       {items.map((t) => (
         <li key={t} className="flex items-center gap-8 whitespace-nowrap">
           <span>{t}</span>
-          <span aria-hidden="true">✳</span>
+          <Asterisk className="size-8 shrink-0 sm:size-12" strokeWidth={2.5} aria-hidden="true" />
         </li>
       ))}
     </ul>

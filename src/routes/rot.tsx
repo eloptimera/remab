@@ -36,8 +36,8 @@ function Rot() {
       <section className="container-page pt-16 pb-14 sm:pt-24">
         <Reveal>
           <p className="eyebrow">Privatkunder</p>
-          <Heading as="h1" className="mt-6 max-w-3xl text-5xl sm:text-6xl">
-            Sänk dina arbetskostnader med <Underline>ROT-avdrag</Underline>
+          <Heading as="h1" className="mt-6 max-w-3xl text-[clamp(2rem,9vw,3rem)] sm:text-6xl">
+            Sänk dina arbetskostnader med <Underline nowrap>ROT-avdrag</Underline>
           </Heading>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
             ReMAB AB har F-skatt, vilket krävs för att du ska kunna använda ROT-avdraget direkt på

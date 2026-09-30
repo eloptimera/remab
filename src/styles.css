@@ -93,6 +93,12 @@
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: 0;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   :focus-visible {
